@@ -1,0 +1,59 @@
+body{
+    margin: 50px;
+}
+h1{
+    font-size: 40px;
+    text-align: center;
+}
+#main{
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(auto-fill, 400px);
+    padding: 10px;
+}
+.project{
+    height: 300px;
+    width: 400px;
+    border-radius: 10px;
+    display: flex;
+    flex-flow: column;
+    box-shadow: 0px 2px 5px #aaa;
+    justify-content: space-between;
+}
+.project *{
+    margin: 0 auto;
+}
+.project>img{
+    width: 50%;
+    border-radius:10px;
+    margin: 20px auto;
+}
+.projectLinkHolder{
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.project a{
+    width: 70%;
+    height: 40px;
+    background-color: #115;
+    color: #fff;
+    font-size: small;
+    text-align: center;
+    font-weight: bolder;
+    text-decoration: none;
+    line-height: 40px;
+}
+.project a:hover{
+    transition: background-color, 0.2s;
+    background-color: #226;
+    cursor: pointer;
+}
+.project .projectLink{
+    border-bottom: 2px solid #226;
+    border-radius: 15px 15px 0 0;
+}
+.project .femLink{
+    border-radius: 0 0 15px 15px;
+}
