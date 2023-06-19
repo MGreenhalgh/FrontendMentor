@@ -1,0 +1,96 @@
+body{
+    background-color: #141519;
+}
+#main{
+    margin:0 auto;
+    width: 300px;
+    height: 270px;
+    border-radius: 20px;
+    color: #fff;
+    background: linear-gradient(#272a34, #171e28);
+    padding: 20px;
+    user-select: none;
+}
+#star, .rateButton{
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display:flex;
+}
+#star img{
+    width: 35%;
+    height: 35%;
+    margin: auto;
+}
+#mainText h1{
+    font-size: large;
+    margin-top: 20px;
+}
+p{
+    color: #ccc;
+    font-size: small;
+}
+#ratingContainer{
+    display:flex;
+    gap: 30px;
+    width: 100%;
+    height: 40px;
+    margin: 20px 0;
+    align-content: space-between;
+}
+.rateButton{
+    cursor: pointer;
+    line-height: 36px;
+    text-align: center;
+    flex-flow: column;
+}
+.rateButton:hover{
+    background-color: rgba(255,255,255,0.8);
+}
+.rateButton:focus{
+    background-color: #f97312;
+}
+#submitButton{
+    cursor: pointer;
+    background-color: #f97312;
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    font-weight: bold;
+    line-height: 40px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+#submitButton:hover{
+    background-color: #fff;
+    color: #f97312;
+}
+
+/*Thank you state*/
+
+#thankYou{
+    display: none;
+    flex-flow: column;
+    align-items: center;
+}
+#thankYou img{
+    height: 40%;
+    width: 40%;
+margin-bottom: 20px;
+}
+#thankYou h1{
+    margin-bottom: 0px;
+}
+#thankYou p{
+    text-align: center;
+}
+#ratingSelected{
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    color:#f97312;
+    width: 60%;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+}
