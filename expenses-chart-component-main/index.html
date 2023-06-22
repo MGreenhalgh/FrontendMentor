@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+  <script src="data.json"></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Frontend Mentor | Expenses chart component</title>
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="balanceHeader">
+      <div id="balanceText">
+        <small>My balance</small>
+        <div>$921.48</div>
+      </div>
+      <img src="images/logo.svg" id="logo"></img>
+    </header>
+    <main>
+      <h1>Spending - Last 7 days</h1>
+      <div id="chart">
+        <div id="monBarHolder" class="barHolder">
+          <div id="mon" class="bar"></div>
+        </div>
+        <div id="tueBarHolder" class="barHolder">
+          <div id="tue" class="bar"></div>
+        </div>
+        <div id="wedBarHolder" class="barHolder">
+          <div id="wed" class="bar today"></div>
+        </div>
+        <div id="thuBarHolder" class="barHolder">
+          <div id="thu" class="bar"></div>
+        </div>
+        <div id="friBarHolder" class="barHolder">
+          <div id="fri" class="bar"></div>
+        </div>
+        <div id="satBarHolder" class="barHolder">
+          <div id="sat" class="bar"></div>
+        </div>
+        <div id="sunBarHolder" class="barHolder">
+          <div id="sun" class="bar"></div>
+        </div>
+      </div>
+      <footer id="mainFooter">
+        <div id="totalText">
+          <small>Total this month</small>
+          <div>$478.33</div>
+        </div>
+        <div id="monthChange">
+          <div>+2.4%</div>
+          <small>from last month</small>
+        </div>
+      </footer>
+    </main>
+  </div>
+</body>
+
+</html>
