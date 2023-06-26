@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+
+  <title>Frontend Mentor | Interactive card details form</title>
+
+</head>
+
+<body>
+  <div id="cardFront" class="card">
+    <img src="images/card-logo.svg" alt="">
+    <span id="cardNumber">1234 5678 9999 0000</span>
+    <span id="cardName">Jane Appleseed</span>
+    <div id="cardDate">
+      <span id="cardMonth">00</span><span>/</span>
+      <span id="cardYear">00</span>
+    </div>
+  </div>
+  <div id="cardBack" class="card">
+    <span id="cardCVC">123</span>
+  </div>
+  <main>
+    <form>
+      <label for="name">CARDHOLDER NAME</label>
+      <input type="text" name="name" placeholder="e.g. Jane Appleseed" id="name" onkeyup='updateText(event)'>
+
+      <label for="number">CARD NUMBER</label>
+      <input type="text" name="number" id="number" placeholder="e.g. 1234 5678 9999 0000" maxlength="16"
+        onkeypress='validate(event)' onkeyup='updateNumber(event)'>
+      <div id="dateCVC">
+        <div id="dateDiv">
+          <label for="month">EXP. DATE (MM/YY)</label>
+          <div id="dateInputDiv"><input type="text" name="month" id="month" placeholder="MM" maxlength="2"
+              onkeypress='validate(event)' onkeyup='updateText(event)'>
+            <input type="text" name="year" id="year" placeholder="YY" maxlength="2" onkeypress='validate(event)'
+              onkeyup='updateText(event)'>
+          </div>
+        </div>
+        <div id="cvcDiv"><label for="cvc">CVC</label>
+          <input type="text" name="cvc" id="CVC" placeholder=" e.g. 123" maxlength="3" onkeypress='validate(event)'
+            onkeyup='updateText(event)'>
+        </div>
+      </div>
+
+      <input type="button" value="Confirm">
+    </form>
+  </main>
+</body>
+
+</html>

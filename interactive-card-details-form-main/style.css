@@ -1,0 +1,117 @@
+body{
+    background-image: url(images/bg-main-desktop.png);
+    background-repeat: no-repeat;
+}
+.card{
+    width: 447px;
+    height: 245px;
+    border-radius: 15px;
+    position: absolute;
+    padding: 30px;
+}
+#cardFront{
+    background-image: url(images/bg-card-front.png);
+    background-repeat: no-repeat;
+    top: 170px;
+    left: 140px;
+}
+#cardBack{
+    background-image: url(images/bg-card-back.png);
+    background-repeat: no-repeat;
+    top: 450px;
+    left: 220px;
+}
+.card span{
+    position:absolute;
+    color: #fff;
+    letter-spacing: 4px;
+}
+#cardNumber{
+    top: 130px;
+    left: 30px;
+    font-size: xx-large;
+}
+#cardName{
+    top: 200px;
+    left: 30px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+#cardDate{
+    position: absolute;
+    top: 200px;
+    right: 80px;
+}
+#cardDate *{
+    position: relative;
+}
+#cardCVC{
+    top: 112px;
+    right: 110px;
+    letter-spacing:normal
+}
+
+main{
+    margin: 250px 0 0 45%;
+    width: 450px;
+}
+main form label{
+    letter-spacing: 3px;
+    font-size: x-small;
+    color: #252027;
+    vertical-align: top;
+}
+main form input[type="text"]{
+    border-radius: 5px;
+    margin-bottom:  20px;
+    border: #e0e0e0 solid 1px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+    font-size: large;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+main form input[type="text"]::placeholder{
+    color: #aaa;
+}
+main form input[type="text"]:hover{
+    border-color: #452356;
+}
+#dateCVC{
+    display: flex;
+    gap: 25px;
+}
+#dateDiv{
+    flex:1;
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+}
+#dateInputDiv{
+    display: flex;
+    flex-flow:row;
+    gap: 15px;
+}
+#cvcDiv{
+    flex:1;
+    display: flex;
+    flex-flow: column;
+    gap: 5px;
+}
+main form input[type="button"]{
+    border-radius: 10px;
+    border: none;
+    background-color: #220930;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+}
+main form input[type="button"]:hover{
+    background-color: #324;
+}
