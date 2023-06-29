@@ -10,10 +10,9 @@ function checkField(event) {
     }
     switch (event.target.id) {
         case "day":
-            if (Number(event.target.value) > 31) {
-                event.target.nextElementSibling.innerHTML = "Must be a valid " + event.target.id;
-                event.target.nextElementSibling.classList.remove("hide");
-                event.target.style.borderColor = "red";
+            if (Number(event.target.value) > 31 || isNaN(Number(event.target.value))) {
+                showError(event, "Must be a valid " + event.target.id);
+                if (isNaN(Number(event.target.value))) showError(event, "Must be a number");
             }
             else {
                 if (event.target.style.borderColor == "red") event.target.style.borderColor = "#878787";
@@ -21,10 +20,9 @@ function checkField(event) {
             }
             break;
         case "month":
-            if (Number(event.target.value) > 12) {
-                event.target.nextElementSibling.innerHTML = "Must be a valid " + event.target.id.toString();
-                event.target.nextElementSibling.classList.remove("hide");
-                event.target.style.borderColor = "red";
+            if (Number(event.target.value) > 12 || isNaN(Number(event.target.value))) {
+                showError(event, "Must be a valid " + event.target.id);
+                if (isNaN(Number(event.target.value))) showError(event, "Must be a number");
             }
             else {
                 if (event.target.style.borderColor == "red") event.target.style.borderColor = "#878787";
@@ -32,16 +30,21 @@ function checkField(event) {
             }
             break;
         case "year":
-            if (Number(event.target.value) > today.getFullYear) {
-                event.target.nextElementSibling.innerHTML = "Must be in the past";
-                event.target.nextElementSibling.classList.remove("hide");
-                event.target.style.borderColor = "red";
+            if (Number(event.target.value) > today.getFullYear || isNaN(Number(event.target.value))) {
+                if (Number(event.target.value) > today.getFullYear) showError(event, "Must be in the past");
+                if (isNaN(Number(event.target.value))) showError(event, "Must be a number");
             }
             else {
                 if (event.target.style.borderColor == "red") event.target.style.borderColor = "#878787";
                 if (!event.target.nextElementSibling.classList.contains("hide")) event.target.nextElementSibling.classList.add("hide");
             }
     }
+}
+
+function showError(event, text) {
+    event.target.nextElementSibling.innerHTML = text;
+    event.target.nextElementSibling.classList.remove("hide");
+    event.target.style.borderColor = "red";
 }
 
 function getAge() {
