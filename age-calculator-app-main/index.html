@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <script src="script.js"></script>
+  <script src="moment.js"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <title>Frontend Mentor | Age calculator app</title>
+
+</head>
+
+<body>
+  <div id="main">
+    <header>
+      <div id="dayContainer">
+        <label for="day">DAY</label><br>
+        <input type="text" placeholder="DD" name="day" id="day" maxlength="2" onfocusout="checkField(event)">
+        <div class="error hide"></div>
+      </div>
+      <div id="monthContainer">
+        <label for="month">MONTH</label><br>
+        <input type="text" placeholder="MM" name="month" id="month" maxlength="2" onfocusout="checkField(event)">
+        <div class="error hide"></div>
+      </div>
+      <div id="yearContainer">
+        <label for="year">YEAR</label><br>
+        <input type="text" placeholder="YYYY" name="year" id="year" maxlength="4" onfocusout="checkField(event)">
+        <div class="error hide"></div>
+      </div>
+      <div id="imgbg"><img src="assets/images/icon-arrow.svg" alt="" onclick="getAge()"></div>
+    </header>
+    <div id="results">
+      <div id="yearResultContainer">
+        <span id="yearResult" class="result">--</span>
+        <span id="yearResultText">years</span>
+      </div>
+      <div id="monthResultContainer">
+        <span id="monthResult" class="result">--</span>
+        <span id="monthResultText">months</span>
+      </div>
+      <div id="dayResultContainer">
+        <span id="dayResult" class="result">--</span>
+        <span id="dayResultText">days</span>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
