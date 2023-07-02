@@ -90,6 +90,10 @@ body {
     cursor: pointer;
 }
 
+#main header img:hover {
+    background-color: #000;
+}
+
 #results {
     display: flex;
     flex-flow: column;
@@ -105,4 +109,45 @@ body {
 #results span.result {
     letter-spacing: 10px;
     color: #854bfe;
+}
+
+@media screen and (max-width: 799px) {
+    #main {
+        width: 240px;
+        height: 240px;
+    }
+
+    #main header {
+        padding-bottom: 15px;
+        margin-bottom: 10px;
+    }
+
+    #main header label {
+        font-size: xx-small;
+        letter-spacing: 2px;
+    }
+
+    #main header input {
+        width: 50px;
+        height: 25px;
+        font-size: medium;
+        margin-top: 4px;
+        margin-right: 10px;
+    }
+
+    #main header img {
+        right: 5px;
+        bottom: -48px;
+        width: 20px;
+        height: 20px;
+        padding: 10px;
+    }
+
+    #results span {
+        font-size: 38px;
+    }
+
+    #main header .error {
+        font-size: 9px;
+    }
 }

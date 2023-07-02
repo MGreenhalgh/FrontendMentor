@@ -1,4 +1,14 @@
+html {
+    height: 100%
+}
+
 body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #f7e9dc;
 }
 
@@ -6,6 +16,7 @@ body {
     margin: 0 auto;
     width: 400px;
 }
+
 #balanceHeader {
     background-color: #ec755d;
     border-radius: 15px;
@@ -16,15 +27,18 @@ body {
     height: 50px;
     margin-bottom: 20px;
 }
+
 #balanceHeader img {
     height: 48px;
     width: 72px;
 }
+
 #balanceText {
     display: flex;
     flex-flow: column;
     justify-content: space-between;
 }
+
 #balanceText div,
 h1 {
     font-weight: bold;
@@ -39,6 +53,7 @@ main {
     flex-flow: column;
     padding: 20px;
 }
+
 #chart {
     display: flex;
     align-content: space-evenly;
@@ -48,25 +63,30 @@ main {
     margin-bottom: 20px;
     height: 150px;
 }
-.barHolder{
+
+.barHolder {
     width: 100%;
     display: flex;
     flex-flow: column-reverse;
 
 }
+
 .bar {
     border-radius: 4px;
     background-color: #ec755d;
     flex-basis: 50%;
     width: 100%;
 }
+
 .bar:hover {
     cursor: pointer;
     filter: brightness(1.1);
 }
+
 .today {
     background-color: #76b5bb !important;
 }
+
 .barHolder::before {
     content: attr(day);
     position: relative;
@@ -76,30 +96,34 @@ main {
     color: #aea79f;
 }
 
-#mainFooter{
+#mainFooter {
     display: flex;
     justify-content: space-between;
 }
+
 #totalText small,
-#monthChange small{
+#monthChange small {
     font-size: small;
     color: #aea79f;
 }
-#totalText div{
+
+#totalText div {
     font-weight: bold;
     font-size: xx-large;
 }
-#monthChange div{
+
+#monthChange div {
     font-weight: bold;
     font-size: small;
 }
-#monthChange{
+
+#monthChange {
     display: flex;
     flex-flow: column;
     justify-content: flex-end;
 }
 
-.popup{
+.popup {
     display: none;
     position: relative;
     top: -30px;
@@ -112,5 +136,5 @@ main {
 
     text-align: center;
     vertical-align: middle;
-    line-height: 25px; 
+    line-height: 25px;
 }
