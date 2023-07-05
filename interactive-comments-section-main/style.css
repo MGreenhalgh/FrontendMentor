@@ -25,8 +25,15 @@ main {
     width: 50%;
 }
 
+#comments {
+
+    display: flex;
+    flex-flow: column;
+    align-items: end;
+}
+
 .commentBox,
-#replyBox {
+#selfCommentBox {
     background-color: #fff;
     border-radius: 10px;
     display: flex;
@@ -43,6 +50,10 @@ main {
     display: flex;
     flex-direction: column;
     flex-basis: content;
+}
+
+.voteHolder img {
+    cursor: pointer;
 }
 
 .voteScore {
@@ -102,17 +113,17 @@ main {
 }
 
 
-#replyBox {
+#selfCommentBox {
     display: flex;
     gap: 15px;
 }
 
-#replyBox img {
+#selfCommentBox img {
     width: 40px;
     height: 40px;
 }
 
-#replyBox #replyInput {
+#selfCommentBox #selfCommentInput {
     flex-grow: 2;
     height: 80px;
     border: #eee solid 1px;
@@ -122,11 +133,23 @@ main {
     padding: 10px 15px;
 }
 
-#replyBox #replyButton {
+#selfCommentBox #selfCommentButton {
     background-color: #5357b6;
     color: #fff;
     font-weight: bold;
     width: 90px;
     height: 40px;
     border-radius: 7px;
+}
+
+.reply {
+    width: 80%;
+}
+
+.reply:before {
+    content: "";
+    position: absolute;
+    height: 200px;
+    margin: -20px 0 0 -100px;
+    border-left: #777 solid 2px;
 }
