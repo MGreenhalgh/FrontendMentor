@@ -19,77 +19,17 @@
       <!-- Test comments -->
       <!-- <div class="commentBox">
         <div class="voteHolder">
-          <button type="button" class="votePlus"><img src="images/icon-plus.svg"></button>
+          <button type="button" class="votePlus" onclick='plusScore(1, event)'></button>
           <div class="voteScore">69</div>
-          <button type="button" class="voteMinus"><img src="images/icon-minus.svg"></button>
+          <button type="button" class="voteMinus" onclick='minusScore(1, event)'></button>
         </div>
         <div class="commentBoxMain">
           <div class="commentBoxHeader">
             <img src="images/avatars/image-amyrobson.png" alt="" class="commentUserImg">
             <span class="commentUserName you">Bob</span>
             <span class="commentAge">1 Month ago</span>
-            <button type="button" class="deleteButton"> <img src="images/icon-delete.svg" alt="">Delete</button>
-            <button type="button" class="replyButton"> <img src="images/icon-reply.svg" alt="">Reply</button>
-          </div>
-          <div class="commentText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, magni? Doloremque
-            quibusdam recusandae a pariatur mollitia blanditiis vero. Facilis, atque quaerat? Error excepturi tenetur
-            atque quae fugit odit eum vel? Maiores, magni? Doloremque
-            quibusdam recusandae a pariatur mollitia blanditiis vero. Facilis, atque quaerat?</div>
-        </div>
-      </div>
-      <div class="commentBox">
-        <div class="voteHolder">
-          <button type="button" class="votePlus"><img src="images/icon-plus.svg"></button>
-          <div class="voteScore">69</div>
-          <button type="button" class="voteMinus"><img src="images/icon-minus.svg"></button>
-        </div>
-        <div class="commentBoxMain">
-          <div class="commentBoxHeader">
-            <img src="images/avatars/image-amyrobson.png" alt="" class="commentUserImg">
-            <span class="commentUserName you">Bob</span>
-            <span class="commentAge">1 Month ago</span>
-            <button type="button" class="deleteButton"> <img src="images/icon-delete.svg" alt="">Delete</button>
-            <button type="button" class="replyButton"> <img src="images/icon-reply.svg" alt="">Reply</button>
-          </div>
-          <div class="commentText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, magni? Doloremque
-            quibusdam recusandae a pariatur mollitia blanditiis vero. Facilis, atque quaerat? Error excepturi tenetur
-            atque quae fugit odit eum vel? Maiores, magni? Doloremque
-            quibusdam recusandae a pariatur mollitia blanditiis vero. Facilis, atque quaerat?</div>
-        </div>
-      </div>
-      <div class="commentBox reply">
-        <div class="voteHolder">
-          <button type="button" class="votePlus"><img src="images/icon-plus.svg"></button>
-          <div class="voteScore">69</div>
-          <button type="button" class="voteMinus"><img src="images/icon-minus.svg"></button>
-        </div>
-        <div class="commentBoxMain">
-          <div class="commentBoxHeader">
-            <img src="images/avatars/image-amyrobson.png" alt="" class="commentUserImg">
-            <span class="commentUserName you">Bob</span>
-            <span class="commentAge">1 Month ago</span>
-            <button type="button" class="deleteButton"> <img src="images/icon-delete.svg" alt="">Delete</button>
-            <button type="button" class="replyButton"> <img src="images/icon-reply.svg" alt="">Reply</button>
-          </div>
-          <div class="commentText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, magni? Doloremque
-            quibusdam recusandae a pariatur mollitia blanditiis vero. Facilis, atque quaerat? Error excepturi tenetur
-            atque quae fugit odit eum vel? Maiores, magni? Doloremque
-            quibusdam recusandae a pariatur mollitia blanditiis vero. Facilis, atque quaerat?</div>
-        </div>
-      </div>
-      <div class="commentBox reply">
-        <div class="voteHolder">
-          <button type="button" class="votePlus"><img src="images/icon-plus.svg"></button>
-          <div class="voteScore">69</div>
-          <button type="button" class="voteMinus"><img src="images/icon-minus.svg"></button>
-        </div>
-        <div class="commentBoxMain">
-          <div class="commentBoxHeader">
-            <img src="images/avatars/image-amyrobson.png" alt="" class="commentUserImg">
-            <span class="commentUserName you">Bob</span>
-            <span class="commentAge">1 Month ago</span>
-            <button type="button" class="deleteButton"> <img src="images/icon-delete.svg" alt="">Delete</button>
-            <button type="button" class="replyButton"> <img src="images/icon-reply.svg" alt="">Reply</button>
+            <button type="button" class="deleteButton">Delete</button>
+            <button type="button" class="replyButton">Reply</button>
           </div>
           <div class="commentText">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores, magni? Doloremque
             quibusdam recusandae a pariatur mollitia blanditiis vero. Facilis, atque quaerat? Error excepturi tenetur
@@ -98,10 +38,11 @@
         </div>
       </div> -->
     </div>
-    <div id="selfCommentBox">
-      <img src="" alt="" id="selfCommentUserImg">
-      <textarea name="selfCommentInput" id="selfCommentInput" placeholder="Add a comment..."></textarea>
-      <button type="button" id="selfCommentButton">SEND</button>
+    <div id="selfCommentBox" class="replyBox">
+      <img src="" alt="" id="selfCommentUserImg" class="replyUserImg">
+      <textarea name="selfCommentInput" id="selfCommentInput" class="replyInput"
+        placeholder="Add a comment..."></textarea>
+      <button type="button" id="selfCommentButton" class="sendReplyButton" onclick="addSelfComment()">SEND</button>
     </div>
   </main>
 </body>

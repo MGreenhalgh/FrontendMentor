@@ -10,6 +10,21 @@ button {
     font: inherit;
     cursor: pointer;
     outline: inherit;
+    position: relative;
+}
+
+button:not(.votePlus, .voteMinus)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+button:not(.votePlus, .voteMinus):hover::after {
+    background-color: rgba(255, 255, 255, .5);
 }
 
 body {
@@ -25,22 +40,28 @@ main {
     width: 50%;
 }
 
-#comments {
+#comments,
+main {
 
     display: flex;
     flex-flow: column;
     align-items: end;
 }
 
+.commentBoxMain {
+    width: 100%
+}
+
 .commentBox,
-#selfCommentBox {
+.replyBox {
     background-color: #fff;
     border-radius: 10px;
     display: flex;
     gap: 20px;
     padding: 20px;
     align-items: flex-start;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 .voteHolder {
@@ -49,23 +70,83 @@ main {
     background-color: #f5f6fa;
     display: flex;
     flex-direction: column;
-    flex-basis: content;
+    flex-basis: 30px;
 }
 
-.voteHolder img {
-    cursor: pointer;
+.voteHolder button.votePlus {
+    background-image: url(images/icon-plus.svg);
+}
+
+.voteHolder button.voteMinus {
+    background-image: url(images/icon-minus.svg);
+}
+
+.voteHolder button {
+    height: 10px;
+    width: 10px;
+    margin: 0 auto;
+    padding: 5px;
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
 }
 
 .voteScore {
-    margin: 10px 0 5px 0;
+    margin: 10px auto 5px auto;
+    color: #5357b6;
+    font-weight: bold;
 }
 
-.voteScore,
-.deleteButton,
 .replyButton,
+.deleteButton,
 .editButton {
     color: #5357b6;
     font-weight: bold;
+    background-repeat: no-repeat;
+    background-position: left;
+    padding-left: 18px;
+}
+
+.replyButton {
+    background-image: url(images/icon-reply.svg);
+}
+
+.replyBox {
+    display: flex;
+    gap: 15px;
+}
+
+.replyBox img {
+    width: 40px;
+    height: 40px;
+}
+
+.replyBox .replyInput {
+    flex-grow: 2;
+    height: 80px;
+    border: #eee solid 1px;
+    border-radius: 5px;
+    resize: none;
+    font-family: serif;
+    padding: 10px 15px;
+}
+
+.replyBox .sendReplyButton {
+    background-color: #5357b6;
+    color: #fff;
+    font-weight: bold;
+    width: 90px;
+    height: 40px;
+    border-radius: 7px;
+    position: relative;
+}
+
+.deleteButton {
+    background-image: url(images/icon-delete.svg);
+}
+
+.editButton {
+    background-image: url(images/icon-edit.svg);
 }
 
 .commentBoxMain button img {
@@ -112,44 +193,25 @@ main {
     color: #777;
 }
 
-
-#selfCommentBox {
-    display: flex;
-    gap: 15px;
-}
-
-#selfCommentBox img {
-    width: 40px;
-    height: 40px;
-}
-
-#selfCommentBox #selfCommentInput {
-    flex-grow: 2;
-    height: 80px;
-    border: #eee solid 1px;
-    border-radius: 5px;
-    resize: none;
-    font-family: serif;
-    padding: 10px 15px;
-}
-
-#selfCommentBox #selfCommentButton {
-    background-color: #5357b6;
-    color: #fff;
-    font-weight: bold;
-    width: 90px;
-    height: 40px;
-    border-radius: 7px;
-}
-
 .reply {
-    width: 80%;
+    width: 85%;
+    position: relative;
 }
 
 .reply:before {
     content: "";
     position: absolute;
-    height: 200px;
-    margin: -20px 0 0 -100px;
-    border-left: #777 solid 2px;
+    height: 116%;
+    border-left: #ddd solid 2px;
+    top: -10px;
+    left: -40px;
+}
+
+.hide {
+    display: none;
+}
+
+.error {
+    position: absolute;
+    color: red;
 }
