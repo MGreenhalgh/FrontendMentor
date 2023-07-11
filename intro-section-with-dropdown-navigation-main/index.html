@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@500;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Intro section with dropdown navigation</title>
+
+</head>
+
+<body>
+
+  <header>
+    <div id="snapLogo">snap</div>
+    <div id="headerContainer">
+      <div class="dropdownContainer">
+        <button id="features" class="dropdownButton" onclick="openDropdown (event)">Features</button>
+        <div id="featuresDropdown" class="dropdownMenu hide">
+          <button id="todoButton" class="dropdownItemLogo">Todo List</button>
+          <button id="calendarButton" class="dropdownItemLogo">Calendar</button>
+          <button id="remindersButton" class="dropdownItemLogo">Reminders</button>
+          <button id="planningButton" class="dropdownItemLogo">Planning</button>
+        </div>
+      </div>
+      <div class="dropdownContainer">
+        <button id="company" class="dropdownButton" onclick="openDropdown (event)">Company</button>
+        <div id="companyDropdown" class="dropdownMenu hide">
+          <button id="historyButton" class="dropdownItem">History</button>
+          <button id="ourTeamButton" class="dropdownItem">Our Team</button>
+          <button id="blogButton" class="dropdownItem">Blog</button>
+        </div>
+      </div>
+      <button id="careers">Careers</button>
+      <button id="about">About</button>
+      <div class="spacer">&nbsp;</div>
+      <button id="login">Login</button>
+      <button id="register">Register</button>
+    </div>
+    <button id="menuButton" class="mobileOnly" onclick="openMenu(event)"></button>
+  </header>
+
+  <main>
+    <div id="content">
+      <h1>Make remote work</h1>
+      <p>Get your team in sync, no matter your location. Streamline processes, create team rituals, and watch
+        productivity soar.</p>
+      <button id="learnMore">Learn more</button>
+      <div id="clientHolder">
+        <img src="images/client-databiz.svg" class="clientLogo">
+        <img src="images/client-audiophile.svg" class="clientLogo">
+        <img src="images/client-meet.svg" class="clientLogo">
+        <img src="images/client-maker.svg" class="clientLogo">
+      </div>
+    </div>
+    <picture id="bgImage">
+      <source srcset="images/image-hero-mobile.png" media="(max-width: 1000px)">
+      <img src="images/image-hero-desktop.png" alt="">
+    </picture>
+  </main>
+
+</body>
+
+</html>
