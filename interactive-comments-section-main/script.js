@@ -2,9 +2,18 @@ var data;
 var currentUser;
 
 async function fetchJSON() { //Load all the JSON data
-    var r = await fetch('data.json');
-    var d = await r.json();
-    return data = d;
+
+    if (window.localStorage.getItem("commentsData")) {
+        data = JSON.parse(window.localStorage.getItem("commentsData"));
+        console.log('data loaded from save');
+    }
+    else {
+        var r = await fetch('data.json');
+        var d = await r.json();
+        data = d;
+        console.log('JSON data loaded');
+        return
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -14,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
 async function populatePage() {
     var wait = await fetchJSON(); //Wait for all the JSON data to load from this function before we do anything
     //Do stuff with fully loaded data
-    if (data) console.log('JSON data loaded');
+    if (data) console.log(data);
     loadCurrentUser();
     loadComments();
 }
@@ -41,8 +50,8 @@ function loadReplies(comment) {
 function constructButtons(username, comment) {
     var commentButtons;
     if (username == currentUser.username) {
-        commentButtons = "<button type='button' class='deleteButton' onclick='startDelete(event, comment" + comment.id + ")'>Delete</button>" +
-            "<button type='button' class='editButton' onclick='startEdit(event, comment" + comment.id + ")'>Edit</button>";
+        commentButtons = "<button type='button' class='deleteButton' onclick='showDelete(comment" + comment.id + ")'>Delete</button>" +
+            "<button type='button' class='editButton' onclick='showEdit(comment" + comment.id + ")'>Edit</button>";
     }
     else {
         commentButtons = "<button type='button' class='replyButton' onclick='showReply(comment" + comment.id + ")'>Reply</button>";
@@ -50,7 +59,14 @@ function constructButtons(username, comment) {
     return commentButtons;
 }
 function constructComment(comment, commentButtons, username, reply) {
-    if (reply) reply = "reply"; else reply = "";
+    var replyTo;
+    if (reply) {
+        reply = "reply";
+        replyTo = "<span class='replyingTo'>@" + comment.replyingTo + " </span>";
+    } else {
+        reply = "";
+        replyTo = "";
+    }
     if (username == currentUser.username) username = " you";
     var constructedComment =
         "<div class='commentBox " + reply + "' id='" + "comment" + comment.id + "'>" +
@@ -66,13 +82,17 @@ function constructComment(comment, commentButtons, username, reply) {
         "<span class='commentAge'>" + comment.createdAt + "</span>" +
         commentButtons +
         "</div>" +
-        "<div class='commentText'>" + comment.content + "</div>" +
+        "<div class='commentText'>" + replyTo + comment.content + "</div>" +
+        "<div class='editBoxHolder hide'>" +
+        "<textarea id='comment" + comment.id + "EditBox' class='editBox'></textarea>" +
+        "<button type='button' class='sendEditButton' onclick='submitEdit(comment" + comment.id + ")'>UPDATE</button>" +
+        "</div>" +
         "</div>" +
         "</div>" +//Start reply
         "<div id='comment" + comment.id + "ReplyBox" + "'class='replyBox reply hide'>" +
         "<img src='" + currentUser.image.png + "' class='replyUserImg'>" +
         "<textarea name='replyInput' class='replyInput' id='replyInputcomment" + comment.id + "' placeholder='Add a reply...'></textarea>" +
-        "<button type='button' class='sendReplyButton' onclick='submitReply(event, comment" + comment.id + ")'>REPLY</button>" +
+        "<button type='button' class='sendReplyButton' onclick='submitReply(comment" + comment.id + ")'>REPLY</button>" +
         "</div>";
     return constructedComment;
 }
@@ -125,7 +145,6 @@ function voteScore(comment, event, vote) {
 function addSelfComment() {
     var comment = document.getElementById("selfCommentInput").value;
     if (comment) {
-        console.log(comment);
         var highestCommentId = 0;
         for (var i = 0; i < data.comments.length; i++) {
             if (data.comments[i].id > highestCommentId) highestCommentId = data.comments[i].id;
@@ -138,16 +157,18 @@ function addSelfComment() {
             "content": comment.toString(),
             "createdAt": "Now",
             "score": 0,
-            "user": currentUser
+            "user": currentUser,
+            "replies": []
         };
-
+        data.comments.push(newComment);
         document.getElementById('comments').innerHTML += constructComment(newComment, constructButtons(currentUser.username, newComment), currentUser.username, false);
-        document.getElementById("selfCommentInput").value = "";
+        console.log(data.comments);
 
         if (document.getElementById(document.getElementById("selfCommentInput").id + "error")) {
             document.getElementById(document.getElementById("selfCommentInput").id + "error").remove();
             document.getElementById("selfCommentInput").style.borderColor = "#e0e0e0";
         }
+        document.getElementById("selfCommentInput").value = "";
 
     }
     else {
@@ -173,7 +194,7 @@ function showReply(comment) {
 
 }
 
-function submitReply(event, comment) {
+function submitReply(comment) {
     var reply = document.getElementById('replyInput' + comment.id).value;
     if (reply) {
         var highestCommentId = 0;
@@ -183,20 +204,32 @@ function submitReply(event, comment) {
                 for (var v = 0; v < data.comments[i].replies.length; v++) if (data.comments[i].replies[v].id > highestCommentId) highestCommentId = data.comments[i].replies[v].id
         }
 
+        var commentIndex;
+        for (var i = 0; i < data.comments.length; i++) {
+            if (data.comments[i].id == comment.id.replace(/^\D+/g, '')) commentIndex = i;
+            if (data.comments[i].replies.length != 0)
+                for (var v = 0; v < data.comments[i].replies.length; v++)
+                    if (data.comments[i].replies[v].id == comment.id.replace(/^\D+/g, '')) commentIndex = i;
+        }
+
         var newReply = {
             "id": highestCommentId + 1,
             "content": reply.toString(),
             "createdAt": "Now",
             "score": 0,
-            "user": currentUser
+            "user": currentUser,
+            "replyingTo": data.comments[commentIndex].user.username
         };
 
-        //MAKE A REPLY HAPPEN
+        data.comments[commentIndex].replies.push(newReply);
+        var re = constructComment(newReply, constructButtons(currentUser.username, newReply), currentUser.username, true);
+        comment.insertAdjacentHTML("afterend", re);
 
         if (document.getElementById(document.getElementById('replyInput' + comment.id).id + "error")) {
             document.getElementById(document.getElementById('replyInput' + comment.id).id + "error").remove();
             document.getElementById('replyInput' + comment.id).style.borderColor = "#e0e0e0";
         }
+        window.localStorage.setItem("commentsData", JSON.stringify(data));
         document.getElementById('replyInput' + comment.id).value = "";
         showReply(comment);
     }
@@ -213,4 +246,70 @@ function submitReply(event, comment) {
             f.style.borderColor = "red";
         }
     }
+}
+
+function showEdit(comment) {
+    const editBox = document.getElementById(comment.id + "EditBox");
+    const commentBox = document.querySelector("#" + comment.id + " .commentText");
+
+    if (editBox.parentElement.classList.contains("hide")) {
+        editBox.parentElement.classList.remove("hide");
+        editBox.value = commentBox.innerText;
+        commentBox.classList.add("hide");
+    }
+    else {
+        editBox.parentElement.classList.add("hide");
+        commentBox.classList.remove("hide");
+    }
+}
+
+function submitEdit(comment) {
+    const editBox = document.getElementById(comment.id + "EditBox");
+    const commentBox = document.querySelector("#" + comment.id + " .commentText");
+
+    var commentIndex, commentIndex2, r;
+    for (var i = 0; i < data.comments.length; i++) {
+        if (data.comments[i].id == comment.id.replace(/^\D+/g, '')) { commentIndex = i; }
+        if (data.comments[i].replies.length != 0)
+            for (var v = 0; v < data.comments[i].replies.length; v++)
+                if (data.comments[i].replies[v].id == comment.id.replace(/^\D+/g, '')) { r = true; commentIndex = i; commentIndex2 = v; }
+    }
+    if (r) data.comments[commentIndex].replies[commentIndex2].content = editBox.value;
+    else data.comments[commentIndex].content = editBox.value;
+
+    window.localStorage.setItem("commentsData", JSON.stringify(data));
+    commentBox.innerHTML = editBox.value;
+
+    showEdit(comment);
+}
+
+function showDelete(comment) {
+    const deleteWindow = document.getElementById("deleteWindow");
+    const deleteButton = document.getElementById("deleteButton");
+    if (deleteWindow.classList.contains("hide")) {
+        deleteWindow.classList.remove("hide");
+        deleteButton.addEventListener("click", function () { confirmDelete(comment) })
+    }
+    else {
+        deleteWindow.classList.add("hide");
+        deleteButton.replaceWith(deleteButton.cloneNode(true));
+    }
+}
+
+function confirmDelete(comment) {
+    console.log(comment);
+    var commentIndex, commentIndex2, r;
+    for (var i = 0; i < data.comments.length; i++) {
+        if (data.comments[i].id == comment.id.replace(/^\D+/g, '')) { commentIndex = i; }
+        if (data.comments[i].replies.length != 0)
+            for (var v = 0; v < data.comments[i].replies.length; v++)
+                if (data.comments[i].replies[v].id == comment.id.replace(/^\D+/g, '')) { r = true; commentIndex = i; commentIndex2 = v; }
+    }
+    if (r) data.comments[commentIndex].replies.splice(commentIndex2, 1);
+    else data.comments.replies.splice(commentIndex, 1);
+
+    window.localStorage.setItem("commentsData", JSON.stringify(data));
+    comment.remove();
+    showDelete();
+    console.log(data);
 }

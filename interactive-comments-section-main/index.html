@@ -45,6 +45,16 @@
       <button type="button" id="selfCommentButton" class="sendReplyButton" onclick="addSelfComment()">SEND</button>
     </div>
   </main>
+  <div id="deleteWindow" class="hide">
+    <div id="deleteConfirmBox">
+      <h1>Delete comment</h1>
+      <p>Are you sure you want to delete this comment? This will remove the comment and can't be undone</p>
+      <div id="deleteButtonHolder">
+        <button id="cancelButton" onclick="showDelete()">NO, CANCEL</button>
+        <button id="deleteButton">YES, DELETE</button>
+      </div>
+    </div>
+  </div>
 </body>
 
 </html>

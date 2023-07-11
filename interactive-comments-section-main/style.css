@@ -49,7 +49,9 @@ main {
 }
 
 .commentBoxMain {
-    width: 100%
+    width: 100%;
+    display: flex;
+    flex-flow: column;
 }
 
 .commentBox,
@@ -121,7 +123,8 @@ main {
     height: 40px;
 }
 
-.replyBox .replyInput {
+.replyBox .replyInput,
+.editBox {
     flex-grow: 2;
     height: 80px;
     border: #eee solid 1px;
@@ -131,7 +134,8 @@ main {
     padding: 10px 15px;
 }
 
-.replyBox .sendReplyButton {
+.replyBox .sendReplyButton,
+.sendEditButton {
     background-color: #5357b6;
     color: #fff;
     font-weight: bold;
@@ -149,6 +153,11 @@ main {
     background-image: url(images/icon-edit.svg);
 }
 
+.editBoxHolder {
+    display: flex;
+    gap: 15px;
+}
+
 .commentBoxMain button img {
     margin-right: 5px;
 }
@@ -156,7 +165,7 @@ main {
 .commentBoxHeader {
     display: flex;
     flex-flow: row;
-    gap: 15px;
+    gap: 10px;
     margin-bottom: 20px;
     height: 30px;
     line-height: 30px;
@@ -182,6 +191,7 @@ main {
 
 .commentAge {
     flex-grow: 2;
+    font-size: small;
 }
 
 .deleteButton {
@@ -189,8 +199,14 @@ main {
 }
 
 .commentText,
-.commentAge {
+.commentAge,
+#deleteConfirmBox p {
     color: #777;
+}
+
+.replyingTo {
+    font-weight: bold;
+    color: #5357b6;
 }
 
 .reply {
@@ -208,10 +224,114 @@ main {
 }
 
 .hide {
-    display: none;
+    display: none !important;
 }
 
 .error {
     position: absolute;
     color: red;
+}
+
+#deleteWindow {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: grid;
+    place-items: center;
+}
+
+#deleteConfirmBox {
+    position: fixed;
+    width: 300px;
+    height: 180px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#deleteConfirmBox h1 {
+    font-size: x-large;
+    margin: 10px 0;
+
+}
+
+#deleteButtonHolder {
+    display: flex;
+    justify-content: space-between;
+}
+
+#deleteConfirmBox button {
+    border-radius: 5px;
+    color: #fff;
+    padding: 15px;
+}
+
+#cancelButton {
+    background-color: #67717d;
+}
+
+#deleteButton {
+    background-color: #eb6267;
+}
+
+@media screen and (max-width: 1100px) {
+    main {
+        width: 85%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+
+    .commentBox {
+        flex-flow: column-reverse;
+        position: relative;
+    }
+
+    .voteHolder {
+        flex-direction: row;
+        padding: 0 10px;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .voteScore {
+        margin: 0;
+    }
+
+    .replyButton,
+    .deleteButton,
+    .editButton {
+        position: absolute;
+        bottom: 5px;
+        font-size: small;
+    }
+
+    .replyButton,
+    .editButton {
+        right: 15px;
+    }
+
+    .deleteButton {
+        right: 70px;
+    }
+
+    .replyBox .sendReplyButton,
+    .sendEditButton {
+
+        font-size: small;
+    }
+
+    body {
+        align-items: end;
+        padding: 25px;
+        margin: 0;
+    }
+
+    textarea {
+        min-width: 0;
+    }
+
 }
