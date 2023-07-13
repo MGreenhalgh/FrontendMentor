@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- displays site properly based on user's device -->
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+  <title>Time tracking dashboard</title>
+
+</head>
+
+<body>
+
+  <main>
+    <div id="profile">
+      <div id="profileHeading">
+        <img src="images/image-jeremy.png" alt="">
+        <p>Report for</p>
+        <h1>Jeremy Robson</h1>
+      </div>
+      <div id="timeFrameSelect">
+        <div id="daily" onclick="setTimeFrame(event)">Daily</div>
+        <div id="weekly" onclick="setTimeFrame(event)" class="selected">Weekly</div>
+        <div id="monthly" onclick="setTimeFrame(event)">Monthly</div>
+      </div>
+    </div>
+    <div id="moduleHolder">
+      <div class="module" id="work">
+        <div class="moduleInner">
+          <div class="moduleHeading">
+            <span class="moduleTitle"></span>
+            <button></button>
+          </div>
+          <div class="moduleBody">
+            <div class="moduleTime"></div>
+            <div class="modulePreviousTime"><span class="modulePreviousTimeFrame"></span> - <span class="modulePreviousTimeAmount"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="module" id="play">
+        <div class="moduleInner">
+          <div class="moduleHeading">
+            <span class="moduleTitle"></span>
+            <button></button>
+          </div>
+          <div class="moduleBody">
+            <div class="moduleTime"></div>
+            <div class="modulePreviousTime"><span class="modulePreviousTimeFrame"></span> - <span class="modulePreviousTimeAmount"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="module" id="study">
+        <div class="moduleInner">
+          <div class="moduleHeading">
+            <span class="moduleTitle"></span>
+            <button></button>
+          </div>
+          <div class="moduleBody">
+            <div class="moduleTime"></div>
+            <div class="modulePreviousTime"><span class="modulePreviousTimeFrame"></span> - <span class="modulePreviousTimeAmount"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="module" id="exercise">
+        <div class="moduleInner">
+          <div class="moduleHeading">
+            <span class="moduleTitle"></span>
+            <button></button>
+          </div>
+          <div class="moduleBody">
+            <div class="moduleTime"></div>
+            <div class="modulePreviousTime"><span class="modulePreviousTimeFrame"></span> - <span class="modulePreviousTimeAmount"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="module" id="social">
+        <div class="moduleInner">
+          <div class="moduleHeading">
+            <span class="moduleTitle"></span>
+            <button></button>
+          </div>
+          <div class="moduleBody">
+            <div class="moduleTime"></div>
+            <div class="modulePreviousTime"><span class="modulePreviousTimeFrame"></span> - <span class="modulePreviousTimeAmount"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="module" id="selfcare">
+        <div class="moduleInner">
+          <div class="moduleHeading">
+            <span class="moduleTitle"></span>
+            <button></button>
+          </div>
+          <div class="moduleBody">
+            <div class="moduleTime"></div>
+            <div class="modulePreviousTime"><span class="modulePreviousTimeFrame"></span> - <span class="modulePreviousTimeAmount"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+
+</html>
