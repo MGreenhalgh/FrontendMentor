@@ -85,3 +85,8 @@ function showError(show, reason) {
             }
     }
 }
+
+function menuOpen() {
+    document.getElementById("headerMenu").classList.toggle("opened");
+    document.getElementById("menuButton").classList.toggle("closeButton");
+}
