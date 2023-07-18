@@ -63,6 +63,9 @@ h1 {
     width: 50%;
     border-radius: 10px;
     margin: 20px auto;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    box-shadow: 0 0 15px 2px #000;
 }
 
 .projectLinkHolder {
