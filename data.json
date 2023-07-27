@@ -1,0 +1,59 @@
+{
+    "projects": [
+        {
+            "name": "QR Code Component",
+            "path": "qr-code-component-main",
+            "url": "https://www.frontendmentor.io/challenges/qr-code-component-iux_sIO_H"
+        },
+        {
+            "name": "Results Summary Component",
+            "path": "results-summary-component-main",
+            "url": "https://www.frontendmentor.io/challenges/results-summary-component-CE_K6s0maV"
+        },
+        {
+            "name": "Interactive Rating Component",
+            "path": "interactive-rating-component-main",
+            "url": "https://www.frontendmentor.io/challenges/interactive-rating-component-koxpeBUmI"
+        },
+        {
+            "name": "Expenses Chart Component",
+            "path": "expenses-chart-component-main",
+            "url": "https://www.frontendmentor.io/challenges/expenses-chart-component-e7yJBUdjwt"
+        },
+        {
+            "name": "Interactive Card Details Form",
+            "path": "interactive-card-details-form-main",
+            "url": "https://www.frontendmentor.io/challenges/interactive-card-details-form-XpS8cKZDWw"
+        },
+        {
+            "name": "Age Calculator App",
+            "path": "age-calculator-app-main",
+            "url": "https://www.frontendmentor.io/challenges/age-calculator-app-dF9DFFpj-Q"
+        },
+        {
+            "name": "Interactive Comments Section",
+            "path": "interactive-comments-section-main",
+            "url": "https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9"
+        },
+        {
+            "name": "Intro Section With Dropdown Navigation",
+            "path": "intro-section-with-dropdown-navigation-main",
+            "url": "https://www.frontendmentor.io/challenges/intro-section-with-dropdown-navigation-ryaPetHE5"
+        },
+        {
+            "name": "Time Tracking Dashboard",
+            "path": "time-tracking-dashboard-main",
+            "url": "https://www.frontendmentor.io/challenges/time-tracking-dashboard-UIQ7167Jw"
+        },
+        {
+            "name": "URL Shortening API",
+            "path": "url-shortening-api-master",
+            "url": "https://www.frontendmentor.io/challenges/url-shortening-api-landing-page-2ce3ob-G"
+        },
+        {
+            "name": "Job listings with filtering",
+            "path": "static-job-listings-master",
+            "url": "https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt"
+        }
+    ]
+}

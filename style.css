@@ -12,10 +12,14 @@ body {
     background-color: #fff !important;
 }
 
+button {
+    all: unset;
+}
+
 #displaySwitch {
     position: absolute;
     top: 20px;
-    left: 20px;
+    right: 20px;
     cursor: pointer;
     user-select: none;
     font-size: xx-large;
@@ -31,22 +35,23 @@ h1 {
     color: #000 !important
 }
 
-#main {
+main {
     display: grid;
     gap: 40px;
-    grid-template-columns: repeat(auto-fill, 400px);
+    grid-template-columns: repeat(auto-fill, 320px);
     padding: 10px;
     justify-content: center;
 }
 
 .project {
     height: 300px;
-    width: 400px;
+    width: 320px;
     border-radius: 10px;
     display: flex;
     flex-flow: column;
     box-shadow: 0px 2px 5px #000;
-    justify-content: space-between;
+    gap: 20px;
+    padding-top: 20px;
     background: linear-gradient(#272a34, #171e28);
 }
 
@@ -60,9 +65,8 @@ h1 {
 }
 
 .project>img {
-    width: 50%;
+    width: 75%;
     border-radius: 10px;
-    margin: 20px auto;
     aspect-ratio: 4/3;
     object-fit: cover;
     box-shadow: 0 0 15px 2px #000;
@@ -112,25 +116,15 @@ h1 {
     border-bottom: 2px solid #888 !important;
 }
 
-.project .femLink {
+.project .FMLink {
     border-radius: 0 0 15px 15px;
 }
 
 @media screen and (max-width: 1000px) {
-    #main {
+
+    main {
         display: flex;
         flex-flow: column;
         align-items: center;
     }
-
-    .project {
-        width: 300px;
-        height: 250px;
-    }
-
-    .project a {
-        height: 30px;
-        line-height: 30px;
-    }
-
 }

@@ -32,6 +32,7 @@ header {
     width: 100%;
     height: 156px;
     background: var(--darkCyan) url(images/bg-header-desktop.svg);
+    z-index: -1
 }
 
 main {
@@ -41,7 +42,7 @@ main {
     align-items: center;
     width: 80%;
     margin: 0 auto;
-    margin-top: 156px;
+    margin-top: 131px;
 }
 
 #filterHolder,
@@ -53,15 +54,13 @@ main {
 }
 
 #filterHolder {
-    width: 80%;
-    height: 50px;
-    position: absolute;
-    top: 131px;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 25px;
+    padding: 10px 25px;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+    margin-bottom: -43.6px
 }
 
 #filterTagHolder {
@@ -70,6 +69,7 @@ main {
     gap: 40px;
     justify-content: center;
     font-size: small;
+    max-width: 80%;
 }
 
 .filterTag,
@@ -78,6 +78,7 @@ main {
     padding: 5px 10px 3px 10px;
     border-radius: 3px 0 0 3px;
     position: relative;
+    user-select: none;
 }
 
 .filterTagRemove {
@@ -97,15 +98,18 @@ main {
 
 #filterTagClear {
     float: right;
-    text-decoration: underline;
     font-size: small;
 }
 
+#filterTagClear:hover {
+    text-decoration: underline;
+}
+
 #jobHolder {
-    margin-top: 55px;
     display: flex;
     flex-direction: column;
     gap: 25px;
+    margin-top: 80px;
 }
 
 .job {
@@ -195,4 +199,37 @@ main {
 
 .hide {
     display: none !important;
+}
+
+@media screen and (max-width: 1000px) {
+
+    #jobHolder {
+        gap: 40px;
+    }
+
+    .job {
+        flex-direction: column;
+        position: relative;
+    }
+
+    .jobLeft {
+        padding-bottom: 10px;
+        border-bottom: #ddd solid 1px;
+        margin-bottom: 15px;
+    }
+
+    .jobLeft img {
+        position: absolute;
+        top: -20px;
+        left: 25px;
+        height: 40px;
+        width: 40px;
+    }
+
+    #filterTagHolder,
+    .jobTags {
+        flex-wrap: wrap;
+        row-gap: 10px;
+    }
+
 }
