@@ -54,6 +54,11 @@
             "name": "Job listings with filtering",
             "path": "static-job-listings-master",
             "url": "https://www.frontendmentor.io/challenges/job-listings-with-filtering-ivstIPCt"
+        },
+        {
+            "name": "API Countries",
+            "path": "rest-countries-api-with-color-theme-switcher-master",
+            "url": "https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca"
         }
     ]
 }

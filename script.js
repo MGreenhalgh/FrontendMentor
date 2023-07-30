@@ -1,27 +1,16 @@
 var isDarkMode = true;
 
 function changeDisplayMode() {
-    if (isDarkMode) {
-        document.querySelector("body").classList.add("bodyLight");
-        document.querySelector("h1").classList.add("h1Light");
 
-        var projects = document.querySelectorAll(".project");
-        for (var i = 0; i < projects.length; i++) {
-            projects[i].classList.add("projectLight");
-        }
-        document.getElementById("displaySwitch").innerHTML = "🌙"
-        isDarkMode = false;
-    }
-    else {
-        document.querySelector("body").classList.remove("bodyLight");
-        document.querySelector("h1").classList.remove("h1Light");
-
-        var projects = document.querySelectorAll(".project");
-        for (var i = 0; i < projects.length; i++) {
-            projects[i].classList.remove("projectLight");
-        }
+    if (document.documentElement.getAttribute("data-theme") === "dark") {
+        document.documentElement.setAttribute("data-theme", "light");
         document.getElementById("displaySwitch").innerHTML = "🌞"
-        isDarkMode = true;
+
+    }
+    else if (document.documentElement.getAttribute("data-theme") === "light") {
+        document.documentElement.setAttribute("data-theme", "dark");
+        document.getElementById("displaySwitch").innerHTML = "🌙"
+
     }
 }
 
@@ -41,12 +30,13 @@ async function populatePage() {
     var projectHolder = document.getElementById('projectHolder');
 
     for (var i = 0; i < data.projects.length; i++) {
+        var a = data.projects.length - (i + 1);
         var newHTML =
             "<div class='project'>" +
-            "<img src='" + data.projects[i].path + "/design/desktop-design.jpg' alt='" + data.projects[i].name + "'>" +
+            "<img src='" + data.projects[a].path + "/design/desktop-design.jpg' alt='" + data.projects[a].name + "'>" +
             "<div class='projectLinkHolder'>" +
-            "<a class='projectLink' href='" + data.projects[i].path + "'>" + data.projects[i].name + "</a>" +
-            "<a class='FMLink' href='" + data.projects[i].url + "'>View on Frontend Mentor</a>" +
+            "<a class='projectLink' href='" + data.projects[a].path + "'>" + data.projects[a].name + "</a>" +
+            "<a class='FMLink' href='" + data.projects[a].url + "'>View on Frontend Mentor</a>" +
             "</div>"
         "</div>"
         projectHolder.innerHTML += newHTML;

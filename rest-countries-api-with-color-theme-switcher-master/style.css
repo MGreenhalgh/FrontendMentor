@@ -1,0 +1,262 @@
+[data-theme="dark"] {
+    --background: #202d36;
+    --elements: #2b3743;
+    --text: #fff;
+    --hover: 1.1;
+}
+
+[data-theme="light"] {
+    --background: #fafafa;
+    --elements: #fff;
+    --text: #000;
+    --hover: 0.9;
+}
+
+* {
+    font-family: 'Nunito Sans', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--text);
+}
+
+button {
+    all: unset;
+    cursor: pointer;
+    user-select: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover .countryInfo,
+.dropdownMenu button:hover {
+    filter: brightness(var(--hover));
+}
+
+body {
+    background-color: var(--background);
+}
+
+header,
+#filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    background-color: var(--elements);
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+    padding: 0 60px;
+}
+
+#headerTitle {
+    font-weight: 800;
+    font-size: large;
+    user-select: none;
+}
+
+#viewMode {
+    font-size: small;
+    background: no-repeat url(images/moon-solid.svg);
+    padding-left: 20px;
+}
+
+main {
+    padding: 60px;
+}
+
+#filters {
+    margin-bottom: 60px;
+}
+
+#searchForm {
+    display: flex;
+    width: 400px;
+    height: 40px;
+    background: var(--elements);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+#searchButton {
+    background: no-repeat url(images/magnifying-glass-solid-white.svg);
+    background-position: 50%;
+    background-size: 15px;
+    height: 100%;
+    width: 60px;
+    position: relative;
+}
+
+#searchInput {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    width: 100%;
+}
+
+#searchInput:focus-visible {
+    outline: none;
+}
+
+#dropdownContainer {
+    position: relative;
+}
+
+#regionFilter {
+    height: 40px;
+    width: 160px;
+    font-size: small;
+    font-weight: 300;
+    padding-left: 20px;
+    background: var(--elements) no-repeat url(images/chevron-down-solid-white.svg);
+    background-position: 90%;
+    background-size: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+#filterTag {
+    background: var(--elements) no-repeat url(images/xmark-solid-white.svg);
+    background-position: 90%;
+    background-size: 15px;
+    font-size: small;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+    height: 30px;
+    width: 100px;
+    display: inline-block;
+    padding-left: 20px;
+    line-height: 30px;
+    text-decoration: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.dropdownMenu {
+    display: flex;
+    flex-flow: column;
+    width: 180px;
+    background-color: var(--elements);
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    height: fit-content;
+    border-radius: 5px;
+    padding: 5px 0;
+    margin-top: 3px;
+    right: 0px;
+}
+
+.dropdownMenu button {
+    background-color: var(--elements);
+    width: 160px;
+    padding: 5px 0px 5px 20px;
+
+}
+
+.hide,
+.searchHide,
+.filterHide {
+    display: none !important;
+}
+
+#countryHolder {
+    display: grid;
+    gap: 40px;
+    grid-template-columns: repeat(auto-fill, 220px);
+
+}
+
+.country {
+    width: 220px;
+    height: fit-content;
+    background-color: var(--elements);
+    border-radius: 5px;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.country .countryImg {
+    width: 100%;
+    height: 132px;
+    border-radius: 5px 5px 0 0;
+}
+
+.country .countryInfo {
+    padding: 20px;
+    background-color: var(--elements);
+    top: -6px;
+    position: relative;
+    height: auto;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: -6px;
+}
+
+.country .countryInfo div {
+    font-size: small;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.country .countryInfo .countryName {
+    font-weight: 800;
+    font-size: medium;
+    margin-bottom: 15px;
+    text-decoration: none;
+    display: block;
+}
+
+.country .countryInfo span {
+    font-weight: 300;
+}
+
+@media screen and (max-width: 860px) {
+
+    #filters {
+        flex-direction: column;
+        gap: 20px;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    #countryHolder {
+        justify-content: center;
+    }
+
+    #searchForm {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 520px) {
+
+    header {
+        padding: 0 20px;
+    }
+
+    #filters {
+        margin-bottom: 30px;
+    }
+
+    main {
+        padding: 30px 20px 20px 20px
+    }
+
+    #filterTag {
+        margin-bottom: 20px;
+    }
+
+    #dropdown {
+        right: unset;
+    }
+
+    #countryHolder {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+}

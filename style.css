@@ -1,3 +1,19 @@
+[data-theme="dark"] {
+    --background: #202d36;
+    --element1: #272a34;
+    --element2: #171e28;
+    --button: #141519;
+    --text: #fff;
+}
+
+[data-theme="light"] {
+    --background: #fafafa;
+    --element1: #eee;
+    --element2: #ccc;
+    --button: #aaa;
+    --text: #000;
+}
+
 * {
     transition-property: color, background-color, box-shadow, background, border-bottom;
     transition-duration: 0.5s;
@@ -5,11 +21,7 @@
 
 body {
     margin: 50px;
-    background-color: #141519;
-}
-
-.bodyLight {
-    background-color: #fff !important;
+    background-color: var(--background);
 }
 
 button {
@@ -28,12 +40,9 @@ button {
 h1 {
     font-size: 40px;
     text-align: center;
-    color: #fff;
+    color: var(--text);
 }
 
-.h1Light {
-    color: #000 !important
-}
 
 main {
     display: grid;
@@ -49,15 +58,10 @@ main {
     border-radius: 10px;
     display: flex;
     flex-flow: column;
-    box-shadow: 0px 2px 5px #000;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
     gap: 20px;
     padding-top: 20px;
-    background: linear-gradient(#272a34, #171e28);
-}
-
-.projectLight {
-    box-shadow: 0px 2px 5px #aaa !important;
-    background: linear-gradient(#eee, #ccc) !important;
+    background: linear-gradient(var(--element1), var(--element2));
 }
 
 .project * {
@@ -69,7 +73,7 @@ main {
     border-radius: 10px;
     aspect-ratio: 4/3;
     object-fit: cover;
-    box-shadow: 0 0 15px 2px #000;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
 }
 
 .projectLinkHolder {
@@ -82,8 +86,8 @@ main {
 .project a {
     width: 70%;
     height: 40px;
-    background-color: #141519;
-    color: #fff;
+    background-color: var(--button);
+    color: var(--text);
     font-size: small;
     text-align: center;
     font-weight: bolder;
@@ -91,15 +95,10 @@ main {
     line-height: 40px;
 }
 
-.projectLight a {
-    background-color: #aaa !important;
-    color: #000 !important;
-
-}
 
 .project a:hover {
     transition: background-color, 0.2s;
-    background-color: #272a34;
+    background-color: var(--element1);
     cursor: pointer;
 }
 
@@ -108,12 +107,8 @@ main {
 }
 
 .project .projectLink {
-    border-bottom: 2px solid #272a34;
+    border-bottom: 2px solid var(--element1);
     border-radius: 15px 15px 0 0;
-}
-
-.projectLight .projectLink {
-    border-bottom: 2px solid #888 !important;
 }
 
 .project .FMLink {
