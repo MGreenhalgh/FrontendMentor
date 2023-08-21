@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+
+  <title>Multi-step form</title>
+
+</head>
+
+<body>
+  <main>
+    <div id="stageTracker">
+      <div class="formStageTracker" id="formStage1Tracker">
+        <div class="stageNumber">1</div>
+        <div class="stageText">
+          <div class="stageNumberText">STEP 1</div>
+          <div class="stageTitle">YOUR INFO</div>
+        </div>
+      </div>
+      <div class="formStageTracker" id="formStage2Tracker">
+        <div class="stageNumber">2</div>
+        <div class="stageText">
+          <div class="stageNumberText">STEP 2</div>
+          <div class="stageTitle">SELECT PLAN</div>
+        </div>
+      </div>
+      <div class="formStageTracker" id="formStage3Tracker">
+        <div class="stageNumber">3</div>
+        <div class="stageText">
+          <div class="stageNumberText">STEP 3</div>
+          <div class="stageTitle">ADD-ONS</div>
+        </div>
+      </div>
+      <div class="formStageTracker" id="formStage4Tracker">
+        <div class="stageNumber">4</div>
+        <div class="stageText">
+          <div class="stageNumberText">STEP 4</div>
+          <div class="stageTitle">SUMMARY</div>
+        </div>
+      </div>
+    </div>
+    <div id="formHolder">
+
+      <div class="form hide" id="formStage1">
+        <h1>Personal info</h1>
+        <p>Please provide your name, email address, and phone number.</p>
+        <form>
+          <label for="nameField">Name</label>
+          <input type="text" name="nameField" id="nameField" placeholder="e.g. Stephen King">
+          <label for="emailField">Email Addresss</label>
+          <input type="text" name="emailField" id="emailField" placeholder="e.g. stephenking@lorem.com">
+          <label for="phoneField">Phone Number</label>
+          <input type="text" name="phoneField" id="phoneField" placeholder="e.g. +1 234 567 890">
+        </form>
+        <button class="nextButton">Next Step</button>
+      </div>
+
+      <div class="form hide" id="formStage2">
+        <h1>Select your plan</h1>
+        <p>You have the option of monthly or yearly billing.</p>
+        <div id="planButtonHolder">
+          <button id="arcade" onclick="choosePlan(event, 1)">
+            <div>Arcade</div>
+            <div class="planPrice">$9/mo</div>
+          </button>
+          <button id="advanced" onclick="choosePlan(event, 2)">
+            <div>Advanced</div>
+            <div class="planPrice">$12/mo</div>
+          </button>
+          <button id="pro" onclick="choosePlan(event, 3)">
+            <div>Pro</div>
+            <div class="planPrice">$15/mo</div>
+          </button>
+        </div>
+        <div id="planMonthlyYearlySwitch" onclick="chooseBilling()">
+          <span class="monthly selected">Monthly</span>
+          <div class="sliderButtonHolder"> <span class="sliderButton"></span> </div>
+          <span class="yearly">Yearly</span>
+        </div>
+        <button class="backButton">Go Back</button>
+        <button class="nextButton">Next Step</button>
+      </div>
+
+      <div class="form hide" id="formStage3">
+        <h1>Pick add-ons</h1>
+        <p>Add-ons help enhance your gaming experience.</p>
+        <div id="addOnButtonHolder">
+          <button class="addOnButton" onclick="chooseAddon(event, 1)">
+            <input type="checkbox" name="addOn1" id="addOn1">
+            <div class="addOnText">
+              <div class="addOnTitle">Online Service</div>
+              <div class="addOnDesc">Access to multiplayer games</div>
+            </div>
+            <div class="addOnPrice">+$1/mo</div>
+          </button>
+          <button class="addOnButton" onclick="chooseAddon(event, 2)">
+            <input type="checkbox" name="addOn2" id="addOn2">
+            <div class="addOnText">
+              <div class="addOnTitle">Larger storage</div>
+              <div class="addOnDesc">Extra 1TB of cloud save</div>
+            </div>
+            <div class="addOnPrice">+$2/mo</div>
+          </button>
+          <button class="addOnButton" onclick="chooseAddon(event, 3)">
+            <input type="checkbox" name="addOn3" id="addOn3">
+            <div class="addOnText">
+              <div class="addOnTitle">Customizable Profile</div>
+              <div class="addOnDesc">Custom theme on your profile</div>
+            </div>
+            <div class="addOnPrice">+$2/mo</div>
+        </div>
+        </button>
+        <button class="backButton">Go Back</button>
+        <button class="nextButton">Next Step</button>
+      </div>
+
+      <div class="form hide" id="formStage4">
+        <h1>Finishing up</h1>
+        <p>Double-check everything looks OK before confirming.</p>
+        <div id="summaryHolder">
+          <div class="summaryPlan">
+            <div class="summaryPlanText">
+              <div class="summaryPlanTitle">Arcade (Monthly)</div>
+              <a class="summaryPlanChange">Change</a>
+            </div>
+            <div class="summaryPlanPrice">$9/mo</div>
+          </div>
+          <div class="summaryAddOns">
+            <div class="summaryAddOnItem">
+              <div class="summaryAddOnTitle">Online Service</div>
+              <div class="summaryAddOnPrice">+$1/mo</div>
+            </div>
+          </div>
+        </div>
+        <div id="summaryTotal">Total (per month)
+          <div id="summaryTotalPrice">+$10/mo</div>
+        </div>
+        <button class="backButton">Go Back</button>
+        <button class="nextButton">Confirm</button>
+      </div>
+
+      <div class="form hide" id="formStage5">
+        <img src="assets/images/icon-thank-you.svg" alt="">
+        <h1>Thank you!</h1>
+        <p>Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to
+          email us at <a href="mailto:support@loremgaming.com">support@loremgaming.com</a>.</p>
+      </div>
+    </div>
+  </main>
+
+</body>
+
+</html>
