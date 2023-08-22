@@ -52,13 +52,16 @@
         <p>Please provide your name, email address, and phone number.</p>
         <form>
           <label for="nameField">Name</label>
-          <input type="text" name="nameField" id="nameField" placeholder="e.g. Stephen King">
+          <input type="text" name="nameField" id="nameField" placeholder="e.g. Stephen King" onfocusout="validateFields('name')">
           <label for="emailField">Email Addresss</label>
-          <input type="text" name="emailField" id="emailField" placeholder="e.g. stephenking@lorem.com">
+          <input type="text" name="emailField" id="emailField" placeholder="e.g. stephenking@lorem.com"
+            onfocusout="validateFields('email')">
           <label for="phoneField">Phone Number</label>
-          <input type="text" name="phoneField" id="phoneField" placeholder="e.g. +1 234 567 890">
+          <input type="text" name="phoneField" id="phoneField" placeholder="e.g. +1 234 567 890" onfocusout="validateFields('phone')">
         </form>
-        <button class="nextButton">Next Step</button>
+        <div class="navButtonHolder">
+          <button class="nextButton">Next Step</button>
+        </div>
       </div>
 
       <div class="form hide" id="formStage2">
@@ -83,8 +86,10 @@
           <div class="sliderButtonHolder"> <span class="sliderButton"></span> </div>
           <span class="yearly">Yearly</span>
         </div>
-        <button class="backButton">Go Back</button>
-        <button class="nextButton">Next Step</button>
+        <div class="navButtonHolder">
+          <button class="backButton">Go Back</button>
+          <button class="nextButton">Next Step</button>
+        </div>
       </div>
 
       <div class="form hide" id="formStage3">
@@ -116,8 +121,10 @@
             <div class="addOnPrice">+$2/mo</div>
         </div>
         </button>
-        <button class="backButton">Go Back</button>
-        <button class="nextButton">Next Step</button>
+        <div class="navButtonHolder">
+          <button class="backButton">Go Back</button>
+          <button class="nextButton">Next Step</button>
+        </div>
       </div>
 
       <div class="form hide" id="formStage4">
@@ -141,8 +148,10 @@
         <div id="summaryTotal">Total (per month)
           <div id="summaryTotalPrice">+$10/mo</div>
         </div>
-        <button class="backButton">Go Back</button>
-        <button class="nextButton">Confirm</button>
+        <div class="navButtonHolder">
+          <button class="backButton">Go Back</button>
+          <button class="nextButton">Next Step</button>
+        </div>
       </div>
 
       <div class="form hide" id="formStage5">

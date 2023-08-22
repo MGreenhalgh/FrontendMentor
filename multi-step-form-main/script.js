@@ -1,5 +1,3 @@
-var currentStage = 1;
-
 document.addEventListener('DOMContentLoaded', () => populatePage());
 async function fetchJSON() { //Load all the JSON data and return after it's all loaded
     var r = await fetch('data.json'); var d = await r.json(); return data = d;
@@ -7,12 +5,10 @@ async function fetchJSON() { //Load all the JSON data and return after it's all 
 async function populatePage() {
     await fetchJSON(); //Wait for all the JSON data to load from this function before we do anything else
     if (data) console.log('JSON data loaded');
-    showStage(currentStage);
+    showStage(1);
 }
 
-
 function showStage(stage) {
-    currentStage = stage;
     var thisStage = document.getElementById(`formStage${stage}`);
 
     var stages = document.querySelectorAll(".form")
@@ -29,16 +25,12 @@ function showStage(stage) {
 
     if (stage == 4) {
         var selectedPlan = data.plans.find(obj => { return obj.id === data.selections.plan.id })
-        console.log(selectedPlan);
         var billing = data.selections.plan.monthly ? "Monthly" : "Yearly";
         var billingLong = data.selections.plan.monthly ? "month" : "year";
         var billingShort = data.selections.plan.monthly ? "mo" : "yr";
-        console.log(data.selections.plan.monthly);
-
         var totalPrice = data.selections.plan.monthly ? selectedPlan.price : selectedPlan.price * 10;
 
-
-        var addonsHTML = ""
+        var addonsHTML = data.selections.addons.length > 0 ? `<div class="summaryAddOns">` : "";
         for (let i = 0; i < data.selections.addons.length; i++) {
             const addon = data.selections.addons[i];
             var selectedAddon = data.addons.find(obj => { return obj.id === addon })
@@ -50,6 +42,8 @@ function showStage(stage) {
                 `</div>`;
             totalPrice += addonPrice;
         }
+        addonsHTML += data.selections.addons.length > 0 ? `</div>` : "";
+
         var summaryHTML =
             `<div class="summaryPlan">` +
             `<div class="summaryPlanText">` +
@@ -58,19 +52,99 @@ function showStage(stage) {
             `</div>` +
             `<div class="summaryPlanPrice">$${totalPrice}/${billingShort}</div>` +
             `</div>` +
-            `<div class="summaryAddOns">` +
             addonsHTML +
-            `</div>` +
-            `</div>`;
+            `</>`;
 
         document.getElementById('summaryHolder').innerHTML = summaryHTML;
 
         var totalHTML = `Total (per ${billingLong})<div id="summaryTotalPrice">+$${totalPrice}/${billingShort}</div>`;
         document.getElementById('summaryTotal').innerHTML = totalHTML;
     }
-
     if (thisStage.querySelector('.backButton')) thisStage.querySelector('.backButton').addEventListener("click", () => { showStage(stage - 1) })
-    if (thisStage.querySelector('.nextButton')) thisStage.querySelector('.nextButton').addEventListener("click", () => { showStage(stage + 1) })
+    if (thisStage.querySelector('.nextButton')) thisStage.querySelector('.nextButton').addEventListener("mouseover", () => { nextCheckValid(stage) })
+}
+
+function validateFields(type) {
+    var field = document.getElementById(`${type}Field`);
+    var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+    var phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+
+    switch (type) {
+        case "name": {
+            if (field.value > "") {
+                data.details.name = field.value;
+                clearFieldError(field)
+                break;
+            } else {
+                fieldError(field)
+            }
+            break;
+        }
+        case "email": {
+            if (emailRegex.test(field.value)) {
+                data.details.email = field.value;
+                clearFieldError(field)
+                break;
+            } else {
+                fieldError(field)
+            }
+            break;
+        }
+        case "phone": {
+            if (phoneRegex.test(field.value)) {
+                data.details.phone = field.value;
+                clearFieldError(field)
+                break;
+            } else {
+                fieldError(field)
+            }
+            break;
+        }
+    }
+}
+
+function fieldError(element) {
+    if (element.nextElementSibling) if (element.nextElementSibling.classList.contains("error")) clearFieldError(element);
+
+    var e = document.createElement("div");
+    e.innerText = "This field must be valid";
+    e.classList.add("error");
+    element.parentElement.insertBefore(e, element.nextElementSibling);
+    element.style.borderColor = "red";
+
+}
+function clearFieldError(element) {
+    if (element.nextElementSibling) if (element.nextElementSibling.classList.contains("error")) {
+        element.nextElementSibling.remove();
+        element.style.borderColor = null;
+    }
+}
+
+function nextCheckValid(stage) {
+    var nextButton = document.getElementById(`formStage${stage}`).querySelector('.nextButton');
+    switch (stage) {
+        case 1: {
+            if (data.details.name > "" && data.details.email > "" && data.details.phone > "") {
+                nextButton.classList.remove("notValid")
+                nextButton.addEventListener("click", () => { showStage(stage + 1) })
+            }
+            else nextButton.classList.add("notValid")
+            break;
+        }
+        case 2: {
+            if (data.selections.plan.id > 0) {
+                nextButton.classList.remove("notValid")
+                nextButton.addEventListener("click", () => { showStage(stage + 1) })
+            }
+            else nextButton.classList.add("notValid")
+            break;
+        }
+        case 3:
+        case 4: {
+            nextButton.addEventListener("click", () => { showStage(stage + 1) })
+            break;
+        }
+    }
 }
 
 function choosePlan(event, plan) {
@@ -80,7 +154,50 @@ function choosePlan(event, plan) {
     }
     event.target.closest("button").classList.add("selected")
     data.selections.plan.id = plan
-    console.log(data.selections.plan);
+    console.log("Plan: " + data.selections.plan);
+}
+
+function chooseBilling() {
+    var button = document.querySelector("#planMonthlyYearlySwitch .sliderButton");
+    var billingElement = button.closest("#planMonthlyYearlySwitch");
+    if (button.style.left == "50%" && !data.selections.plan.monthly) {  //monthly
+        button.style.left = "0%";
+        data.selections.plan.monthly = true;
+        billingElement.querySelector(".monthly").classList.add("selected");
+        billingElement.querySelector(".yearly").classList.remove("selected");
+
+        var planPrices = document.querySelectorAll("#planButtonHolder button .planPrice")
+        for (let i = 0; i < planPrices.length; i++) {
+            var planPrice = data.plans.find(obj => { return obj.id === i + 1 }).price
+            planPrices[i].innerHTML = `$${planPrice}/mo`
+            planPrices[i].closest("button").classList.remove("extend");
+        }
+
+        var addonPrices = document.querySelectorAll("#addOnButtonHolder button .addOnPrice")
+        for (let i = 0; i < addonPrices.length; i++) {
+            var addonPrice = data.addons.find(obj => { return obj.id === i + 1 }).price
+            addonPrices[i].innerHTML = `$${addonPrice}/mo`
+        }
+    } else { //yearly
+        button.style.left = "50%";
+        data.selections.plan.monthly = false;
+        billingElement.querySelector(".yearly").classList.add("selected");
+        billingElement.querySelector(".monthly").classList.remove("selected");
+
+        var planPrices = document.querySelectorAll("#planButtonHolder button .planPrice")
+        for (let i = 0; i < planPrices.length; i++) {
+            var planPrice = data.plans.find(obj => { return obj.id === i + 1 }).price * 10
+            planPrices[i].innerHTML = `$${planPrice}/yr<div class="freeMonths">2 months free</div>`
+            planPrices[i].closest("button").classList.add("extend");
+        }
+
+        var addonPrices = document.querySelectorAll("#addOnButtonHolder button .addOnPrice")
+        for (let i = 0; i < addonPrices.length; i++) {
+            var addonPrice = data.addons.find(obj => { return obj.id === i + 1 }).price * 10
+            addonPrices[i].innerHTML = `$${addonPrice}/yr`
+        }
+    }
+    console.log("Monthly? " + data.selections.plan.monthly);
 }
 
 function chooseAddon(event, addon) {
@@ -95,23 +212,6 @@ function chooseAddon(event, addon) {
         var index = data.selections.addons.indexOf(addon);
         data.selections.addons.splice(index, 1);
     }
-    console.log(data.selections.addons);
+    console.log("Addons: " + data.selections.addons);
 
-}
-
-function chooseBilling() {
-    var button = document.querySelector("#planMonthlyYearlySwitch .sliderButton");
-    var billingElement = button.closest("#planMonthlyYearlySwitch");
-    if (button.style.left == "50%" && !data.selections.plan.monthly) {
-        button.style.left = "0%";
-        data.selections.plan.monthly = true;
-        billingElement.querySelector(".monthly").classList.add("selected");
-        billingElement.querySelector(".yearly").classList.remove("selected");
-    } else {
-        button.style.left = "50%";
-        data.selections.plan.monthly = false;
-        billingElement.querySelector(".yearly").classList.add("selected");
-        billingElement.querySelector(".monthly").classList.remove("selected");
-    }
-    console.log("Monthly? " + data.selections.plan.monthly);
 }
