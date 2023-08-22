@@ -59,6 +59,11 @@
             "name": "API Countries",
             "path": "rest-countries-api-with-color-theme-switcher-master",
             "url": "https://www.frontendmentor.io/challenges/rest-countries-api-with-color-theme-switcher-5cacc469fec04111f7b848ca"
+        },
+        {
+            "name": "Multi-step form",
+            "path": "multi-step-form-main",
+            "url": "https://www.frontendmentor.io/challenges/multistep-form-YVAnSdqQBJ"
         }
     ]
 }
